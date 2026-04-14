@@ -8,7 +8,7 @@ export default defineConfig({
   // Als je repo heet "quantum-leap-physics" op GitHub Pages:
   // base: '/quantum-leap-physics'
   // Als je een eigen domein hebt, laat je dit weg.
-  base: '/quantum-leap',
+  base: '/quantum-leap-physics',
 
   integrations: [mdx()],
 
