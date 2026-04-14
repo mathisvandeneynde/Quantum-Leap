@@ -1,15 +1,4 @@
 ---
-// ============================================================
-// index.astro  —  / (landingspagina)
-//
-// Zelfde donkere stijl als het dashboard.
-// Geen sidebar — wel dezelfde kleuren, typografie, kaarten.
-//
-// Wat aanpassen:
-//   Hero     : titel, subtitel
-//   Modules  : status tekst als een module beschikbaar komt
-//   Why free : tekst naar eigen woorden
-// ============================================================
 ---
 <!DOCTYPE html>
 <html lang="en">
@@ -23,82 +12,93 @@
   <style>
     :root { --mod-color: var(--accent-gold); }
 
-    /* ── Reset body voor landingspagina (geen sidebar) ── */
     body { display: block; }
 
-    /* ================================================================
-       TOPNAVIGATIE
-       ================================================================ */
+    /* ── Topnavigatie ── */
     .topnav {
-      position: fixed; top: 0; left: 0; right: 0;
-      height: var(--header-h);
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      height: 56px;
       background: var(--bg-surface);
       border-bottom: 1px solid var(--border);
-      display: flex; align-items: center; justify-content: space-between;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
       padding: 0 40px;
       z-index: 100;
     }
     .topnav__logo {
-      font-size: 18px; font-weight: 700;
-      letter-spacing: -0.3px; text-decoration: none;
+      font-size: 18px;
+      font-weight: 700;
+      letter-spacing: -0.3px;
+      text-decoration: none;
       color: var(--text-primary);
     }
     .topnav__logo span { color: var(--accent-gold); }
     .topnav__right { display: flex; align-items: center; gap: 12px; }
 
-    /* ================================================================
-       HERO
-       ================================================================ */
+    /* ── Hero ── */
     .hero {
       min-height: 100vh;
-      display: flex; flex-direction: column;
-      align-items: center; justify-content: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
       text-align: center;
       padding: 120px 40px 80px;
-      position: relative; overflow: hidden;
+      position: relative;
+      overflow: hidden;
     }
-    /* Subtiele achtergrondgloed */
     .hero::before {
       content: '';
-      position: absolute; top: 15%; left: 50%;
+      position: absolute;
+      top: 15%; left: 50%;
       transform: translateX(-50%);
       width: 800px; height: 600px;
-      background: radial-gradient(ellipse,
-        rgba(245,166,35,0.07) 0%,
-        rgba(0,201,167,0.04) 50%,
-        transparent 70%);
+      background: radial-gradient(ellipse, rgba(245,166,35,0.07) 0%, rgba(0,201,167,0.04) 50%, transparent 70%);
       pointer-events: none;
     }
-
     .hero__eyebrow {
       font-family: var(--font-mono);
-      font-size: 11px; letter-spacing: 3px;
-      color: var(--accent-gold); text-transform: uppercase;
+      font-size: 11px;
+      letter-spacing: 3px;
+      color: var(--accent-gold);
+      text-transform: uppercase;
       margin-bottom: 20px;
     }
     .hero__title {
-      font-size: clamp(36px, 5.5vw, 68px);
-      font-weight: 700; line-height: 1.05;
+      font-size: 64px;
+      font-weight: 700;
+      line-height: 1.05;
       letter-spacing: -1.5px;
-      margin-bottom: 24px; max-width: 780px;
+      margin-bottom: 24px;
+      max-width: 780px;
     }
     .hero__title span { color: var(--accent-gold); }
     .hero__subtitle {
-      font-size: clamp(15px, 1.8vw, 18px);
-      color: var(--text-secondary); line-height: 1.7;
-      max-width: 520px; margin-bottom: 40px;
+      font-size: 18px;
+      color: var(--text-secondary);
+      line-height: 1.7;
+      max-width: 520px;
+      margin-bottom: 40px;
     }
     .hero__actions { display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; }
 
     .btn-hero {
-      font-weight: 700; font-size: 14px;
-      padding: 13px 28px; border-radius: 10px;
-      cursor: pointer; font-family: var(--font-main);
-      text-decoration: none; transition: transform 0.15s, box-shadow 0.15s;
-      border: none; display: inline-block;
+      font-weight: 700;
+      font-size: 14px;
+      padding: 13px 28px;
+      border-radius: 10px;
+      cursor: pointer;
+      font-family: var(--font-main);
+      text-decoration: none;
+      transition: transform 0.15s, box-shadow 0.15s;
+      border: none;
+      display: inline-block;
     }
     .btn-hero--primary {
-      background: var(--accent-gold); color: #0d0f1a;
+      background: var(--accent-gold);
+      color: #0d0f1a;
     }
     .btn-hero--primary:hover {
       transform: translateY(-2px);
@@ -114,65 +114,71 @@
       color: var(--text-primary);
     }
 
-    /* ================================================================
-       MODULES SECTIE
-       Zelfde kaarten als het dashboard maar in een 3-kolomsgrid
-       ================================================================ */
+    /* ── Modules sectie ── */
     .landing-section {
-      max-width: 1060px; margin: 0 auto;
+      max-width: 1060px;
+      margin: 0 auto;
       padding: 72px 40px;
     }
     .landing-section__label {
-      font-family: var(--font-mono); font-size: 10px;
-      letter-spacing: 3px; color: var(--text-muted);
-      text-transform: uppercase; margin-bottom: 10px;
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 3px;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      margin-bottom: 10px;
     }
     .landing-section__title {
-      font-size: 28px; font-weight: 700; margin-bottom: 8px;
+      font-size: 28px;
+      font-weight: 700;
+      margin-bottom: 8px;
     }
     .landing-section__sub {
-      font-size: 15px; color: var(--text-secondary);
-      margin-bottom: 40px; line-height: 1.6;
+      font-size: 15px;
+      color: var(--text-secondary);
+      margin-bottom: 40px;
+      line-height: 1.6;
     }
-
-    /* 3-kolomsgrid voor de landingspagina */
     .modules-grid-3 {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 16px;
     }
-    @media (max-width: 860px) {
-      .modules-grid-3 { grid-template-columns: repeat(2, 1fr); }
-    }
 
-    /* ================================================================
-       WHY FREE SECTIE
-       ================================================================ */
+    /* ── Why free sectie ── */
     .why-section {
       background: var(--bg-surface);
       border-top: 1px solid var(--border);
       border-bottom: 1px solid var(--border);
     }
     .why-section__inner {
-      max-width: 600px; margin: 0 auto;
-      padding: 72px 40px; text-align: center;
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 72px 40px;
+      text-align: center;
     }
     .why-section__title {
-      font-size: 26px; font-weight: 700; margin-bottom: 16px;
+      font-size: 26px;
+      font-weight: 700;
+      margin-bottom: 16px;
     }
     .why-section__text {
-      font-size: 15px; color: var(--text-secondary);
-      line-height: 1.8; margin-bottom: 32px;
+      font-size: 15px;
+      color: var(--text-secondary);
+      line-height: 1.8;
+      margin-bottom: 32px;
     }
 
-    /* ================================================================
-       FOOTER
-       ================================================================ */
+    /* ── Footer ── */
     .footer {
-      max-width: 1060px; margin: 0 auto;
+      max-width: 1060px;
+      margin: 0 auto;
       padding: 32px 40px;
-      display: flex; justify-content: space-between; align-items: center;
-      font-size: 13px; color: var(--text-muted);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 13px;
+      color: var(--text-muted);
       border-top: 1px solid var(--border);
     }
     .footer a { color: var(--text-muted); text-decoration: none; }
@@ -182,14 +188,13 @@
 </head>
 <body>
 
-<!-- ================================================================
-     TOPNAV
-     ================================================================ -->
+<!-- TOPNAV -->
 <nav class="topnav">
   <a class="topnav__logo" href="/Quantum-Leap/">Quantum<span>Leap</span></a>
   <div class="topnav__right">
-    <a href="https://patreon.com/quantumleapphysics" target="_blank"
-       class="btn-outline">Support on Patreon ❤️</a>
+    <a href="https://patreon.com/quantumleapphysics" target="_blank" class="btn-outline">
+      Support on Patreon ❤️
+    </a>
     <a href="/Quantum-Leap/dashboard" class="btn-primary" style="font-size:13px; padding:8px 20px;">
       Go to platform →
     </a>
@@ -197,9 +202,7 @@
 </nav>
 
 
-<!-- ================================================================
-     HERO
-     ================================================================ -->
+<!-- HERO -->
 <section class="hero">
   <div class="hero__eyebrow">Free · Rigorous · From Newton to QFT</div>
   <h1 class="hero__title">
@@ -216,10 +219,7 @@
 </section>
 
 
-<!-- ================================================================
-     MODULES
-     Zelfde kaart-stijl als het dashboard, 3 kolommen
-     ================================================================ -->
+<!-- MODULES -->
 <section class="landing-section" id="modules">
   <div class="landing-section__label">Curriculum</div>
   <h2 class="landing-section__title">Six modules. One complete arc.</h2>
@@ -229,7 +229,6 @@
 
   <div class="modules-grid-3">
 
-    <!-- Module 1 — AVAILABLE -->
     <a class="module-card" href="/Quantum-Leap/modules/sr"
        style="--mod-color:var(--mod-sr); text-decoration:none; color:inherit;">
       <div class="module-card__top">
@@ -245,7 +244,6 @@
       </div>
     </a>
 
-    <!-- Module 2 — AVAILABLE -->
     <a class="module-card" href="/Quantum-Leap/modules/qm"
        style="--mod-color:var(--mod-qm); text-decoration:none; color:inherit;">
       <div class="module-card__top">
@@ -261,7 +259,6 @@
       </div>
     </a>
 
-    <!-- Module 3 — COMING SOON -->
     <div class="module-card" style="--mod-color:var(--mod-em); opacity:0.6">
       <div class="module-card__top">
         <div class="module-card__icon">🔵</div>
@@ -276,7 +273,6 @@
       </div>
     </div>
 
-    <!-- Module 4 — COMING SOON -->
     <div class="module-card" style="--mod-color:var(--mod-ana); opacity:0.6">
       <div class="module-card__top">
         <div class="module-card__icon">📐</div>
@@ -291,7 +287,6 @@
       </div>
     </div>
 
-    <!-- Module 5 — COMING SOON -->
     <div class="module-card" style="--mod-color:var(--mod-sm); opacity:0.6">
       <div class="module-card__top">
         <div class="module-card__icon">🌡️</div>
@@ -306,7 +301,6 @@
       </div>
     </div>
 
-    <!-- Module 6 — COMING SOON -->
     <div class="module-card" style="--mod-color:var(--mod-qft); opacity:0.6">
       <div class="module-card__top">
         <div class="module-card__icon">✴️</div>
@@ -325,9 +319,7 @@
 </section>
 
 
-<!-- ================================================================
-     WHY FREE
-     ================================================================ -->
+<!-- WHY FREE -->
 <section class="why-section">
   <div class="why-section__inner">
     <div class="landing-section__label">Why free?</div>
@@ -345,298 +337,11 @@
 </section>
 
 
-<!-- ================================================================
-     FOOTER
-     ================================================================ -->
+<!-- FOOTER -->
 <footer class="footer">
   <div>© 2025 Quantum Leap Physics — Free forever</div>
   <div class="footer__links">
     <a href="/Quantum-Leap/dashboard">Platform</a>
-    <a href="https://patreon.com/quantumleapphysics" target="_blank">Patreon</a>
-  </div>
-</footer>
-
-</body>
-</html>      position: fixed; top: 0; left: 0; right: 0;
-      height: 60px;
-      background: rgba(13,15,26,0.85);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid var(--border);
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 0 48px;
-      z-index: 100;
-    }
-    .topnav__logo {
-      font-size: 18px; font-weight: 700; letter-spacing: -0.3px;
-      text-decoration: none; color: var(--text-primary);
-    }
-    .topnav__logo span { color: var(--accent-gold); }
-    .topnav__right { display: flex; align-items: center; gap: 12px; }
-
-    /* ── Hero sectie ── */
-    .hero {
-      min-height: 100vh;
-      display: flex; flex-direction: column;
-      align-items: center; justify-content: center;
-      text-align: center;
-      padding: 120px 48px 80px;
-      position: relative; overflow: hidden;
-    }
-    /* Achtergrondgloed */
-    .hero::before {
-      content: '';
-      position: absolute; top: 10%; left: 50%;
-      transform: translateX(-50%);
-      width: 700px; height: 700px;
-      background: radial-gradient(circle,
-        rgba(245,166,35,0.06) 0%,
-        rgba(0,201,167,0.04) 40%,
-        transparent 70%);
-      pointer-events: none;
-    }
-
-    .hero__eyebrow {
-      font-family: var(--font-mono); font-size: 11px;
-      letter-spacing: 3px; color: var(--accent-gold);
-      text-transform: uppercase; margin-bottom: 20px;
-    }
-    .hero__title {
-      font-size: clamp(36px, 6vw, 72px);
-      font-weight: 700; line-height: 1.05;
-      letter-spacing: -1px;
-      margin-bottom: 24px;
-      max-width: 800px;
-    }
-    .hero__title span { color: var(--accent-gold); }
-    .hero__subtitle {
-      font-size: clamp(16px, 2vw, 20px);
-      color: var(--text-secondary); line-height: 1.7;
-      max-width: 560px; margin-bottom: 40px;
-    }
-    .hero__actions { display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; }
-
-    .btn-hero-primary {
-      background: var(--accent-gold); color: #0d0f1a;
-      font-weight: 700; font-size: 15px;
-      padding: 14px 32px; border-radius: 10px; border: none;
-      cursor: pointer; font-family: var(--font-main);
-      text-decoration: none;
-      transition: transform 0.15s, box-shadow 0.15s;
-    }
-    .btn-hero-primary:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 8px 28px rgba(245,166,35,0.4);
-    }
-    .btn-hero-secondary {
-      background: transparent;
-      border: 1px solid var(--border-light);
-      color: var(--text-secondary); font-size: 15px;
-      padding: 14px 32px; border-radius: 10px;
-      cursor: pointer; font-family: var(--font-main);
-      text-decoration: none;
-      transition: border-color 0.15s, color 0.15s;
-    }
-    .btn-hero-secondary:hover { border-color: var(--text-secondary); color: var(--text-primary); }
-
-    /* ── Modules preview sectie ── */
-    .section {
-      padding: 80px 48px;
-      max-width: 1100px; margin: 0 auto;
-    }
-    .section__label {
-      font-family: var(--font-mono); font-size: 10px;
-      letter-spacing: 3px; color: var(--text-muted);
-      text-transform: uppercase; margin-bottom: 12px;
-    }
-    .section__title { font-size: 32px; font-weight: 700; margin-bottom: 8px; }
-    .section__subtitle { font-size: 16px; color: var(--text-secondary); margin-bottom: 48px; }
-
-    /* Module preview grid */
-    .modules-preview {
-      display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px;
-    }
-    @media (max-width: 900px) {
-      .modules-preview { grid-template-columns: repeat(2, 1fr); }
-    }
-
-    .module-preview-card {
-      background: var(--bg-card); border: 1px solid var(--border);
-      border-radius: 14px; padding: 24px;
-      position: relative; overflow: hidden;
-      text-decoration: none; color: inherit;
-      transition: background 0.2s, border-color 0.2s, transform 0.2s;
-    }
-    .module-preview-card:hover {
-      background: var(--bg-card-hover);
-      border-color: var(--border-light);
-      transform: translateY(-2px);
-    }
-    .module-preview-card::before {
-      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
-      background: var(--mod-color);
-    }
-    .module-preview-card__icon { font-size: 28px; margin-bottom: 12px; }
-    .module-preview-card__code {
-      font-family: var(--font-mono); font-size: 10px;
-      color: var(--text-muted); margin-bottom: 4px;
-    }
-    .module-preview-card__title { font-size: 17px; font-weight: 700; margin-bottom: 8px; }
-    .module-preview-card__desc { font-size: 13px; color: var(--text-secondary); line-height: 1.5; }
-    .module-preview-card__status {
-      margin-top: 16px; font-family: var(--font-mono);
-      font-size: 10px; color: var(--mod-color);
-    }
-
-    /* ── Waarom gratis sectie ── */
-    .why-section {
-      background: var(--bg-surface);
-      border-top: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
-      padding: 80px 48px;
-      text-align: center;
-    }
-    .why-section__inner { max-width: 640px; margin: 0 auto; }
-    .why-section__title { font-size: 28px; font-weight: 700; margin-bottom: 20px; }
-    .why-section__text { font-size: 16px; color: var(--text-secondary); line-height: 1.8; margin-bottom: 32px; }
-
-    /* ── Footer ── */
-    .footer {
-      padding: 40px 48px;
-      border-top: 1px solid var(--border);
-      display: flex; justify-content: space-between; align-items: center;
-      font-size: 13px; color: var(--text-muted);
-      max-width: 1100px; margin: 0 auto;
-    }
-    .footer a { color: var(--text-muted); text-decoration: none; }
-    .footer a:hover { color: var(--text-secondary); }
-  </style>
-</head>
-<body>
-
-<!-- ================================================================
-     TOP NAVIGATION
-     ================================================================ -->
-<nav class="topnav">
-  <a class="topnav__logo" href="/">Quantum<span>Leap</span></a>
-  <div class="topnav__right">
-    <a href="https://patreon.com/quantumleapphysics" target="_blank" class="btn-outline">Support on Patreon ❤️</a>
-    <a href="/dashboard" class="btn-hero-primary" style="font-size:13px; padding:8px 20px;">Go to platform →</a>
-  </div>
-</nav>
-
-
-<!-- ================================================================
-     HERO
-     Pas aan: titel, subtitel, knoptekst
-     ================================================================ -->
-<section class="hero">
-  <div class="hero__eyebrow">Free · Rigorous · From Newton to QFT</div>
-  <h1 class="hero__title">
-    Physics the way<br />physicists <span>actually</span> think
-  </h1>
-  <p class="hero__subtitle">
-    A complete, mathematically rigorous path from classical mechanics
-    to quantum field theory. Free forever — no paywalls, no shortcuts.
-  </p>
-  <div class="hero__actions">
-    <a href="/dashboard" class="btn-hero-primary">Start learning →</a>
-    <a href="#modules" class="btn-hero-secondary">See the curriculum</a>
-  </div>
-</section>
-
-
-<!-- ================================================================
-     MODULES PREVIEW
-     Pas aan: zodra een module beschikbaar is, verander
-     "Coming soon" naar het lesnummer en verwijder opacity
-     ================================================================ -->
-<section class="section" id="modules">
-  <div class="section__label">Curriculum</div>
-  <h2 class="section__title">Six modules. One complete arc.</h2>
-  <p class="section__subtitle">Each module builds on the last. The harmonic oscillator runs as a red thread through all of them.</p>
-
-  <div class="modules-preview">
-
-    <a class="module-preview-card" href="/modules/sr" style="--mod-color: var(--mod-sr)">
-      <div class="module-preview-card__icon">⚡</div>
-      <div class="module-preview-card__code">Module 1</div>
-      <div class="module-preview-card__title">Special Relativity</div>
-      <div class="module-preview-card__desc">Time dilation, length contraction, E=mc². Why Newton breaks down.</div>
-      <div class="module-preview-card__status">● Available now — 8 lessons</div>
-    </a>
-
-    <a class="module-preview-card" href="/modules/qm" style="--mod-color: var(--mod-qm)">
-      <div class="module-preview-card__icon">🌀</div>
-      <div class="module-preview-card__code">Module 2</div>
-      <div class="module-preview-card__title">Quantum Mechanics</div>
-      <div class="module-preview-card__desc">Wave functions, superposition, the double-slit experiment.</div>
-      <div class="module-preview-card__status">● Available now — 10 lessons</div>
-    </a>
-
-    <div class="module-preview-card" style="--mod-color: var(--mod-em); opacity:0.6; cursor:default">
-      <div class="module-preview-card__icon">🔵</div>
-      <div class="module-preview-card__code">Module 3</div>
-      <div class="module-preview-card__title">Electrodynamics</div>
-      <div class="module-preview-card__desc">Maxwell's equations, electromagnetic waves, roots of light.</div>
-      <div class="module-preview-card__status" style="color:var(--text-muted)">Coming soon</div>
-    </div>
-
-    <div class="module-preview-card" style="--mod-color: var(--mod-ana); opacity:0.6; cursor:default">
-      <div class="module-preview-card__icon">📐</div>
-      <div class="module-preview-card__code">Module 4</div>
-      <div class="module-preview-card__title">Analytical Mechanics</div>
-      <div class="module-preview-card__desc">Lagrangian, Hamiltonian, the principle of least action.</div>
-      <div class="module-preview-card__status" style="color:var(--text-muted)">Coming soon</div>
-    </div>
-
-    <div class="module-preview-card" style="--mod-color: var(--mod-sm); opacity:0.6; cursor:default">
-      <div class="module-preview-card__icon">🌡️</div>
-      <div class="module-preview-card__code">Module 5</div>
-      <div class="module-preview-card__title">Statistical Mechanics</div>
-      <div class="module-preview-card__desc">Entropy, Boltzmann, thermodynamics from first principles.</div>
-      <div class="module-preview-card__status" style="color:var(--text-muted)">Coming soon</div>
-    </div>
-
-    <div class="module-preview-card" style="--mod-color: var(--mod-qft); opacity:0.6; cursor:default">
-      <div class="module-preview-card__icon">✴️</div>
-      <div class="module-preview-card__code">Module 6</div>
-      <div class="module-preview-card__title">Quantum Field Theory</div>
-      <div class="module-preview-card__desc">Fields, particles, Feynman diagrams. The Standard Model.</div>
-      <div class="module-preview-card__status" style="color:var(--text-muted)">Coming soon</div>
-    </div>
-
-  </div>
-</section>
-
-
-<!-- ================================================================
-     WHY FREE
-     Pas aan: de tekst naar jouw eigen woorden
-     ================================================================ -->
-<section class="why-section">
-  <div class="why-section__inner">
-    <div class="section__label" style="text-align:center">Why free?</div>
-    <h2 class="why-section__title">Physics belongs to everyone.</h2>
-    <p class="why-section__text">
-      The mathematics that describes reality is not a luxury product.
-      Every paywall between a curious person and a good explanation
-      is a small tragedy. This platform is free because it should be.
-      If it helps you, consider supporting it on Patreon — but never because you have to.
-    </p>
-    <a href="https://patreon.com/quantumleapphysics" target="_blank" class="btn-hero-secondary">
-      Support on Patreon →
-    </a>
-  </div>
-</section>
-
-
-<!-- ================================================================
-     FOOTER
-     ================================================================ -->
-<footer class="footer">
-  <div>© 2025 Quantum Leap Physics — Free forever</div>
-  <div style="display:flex; gap:20px;">
-    <a href="/dashboard">Platform</a>
     <a href="https://patreon.com/quantumleapphysics" target="_blank">Patreon</a>
   </div>
 </footer>
