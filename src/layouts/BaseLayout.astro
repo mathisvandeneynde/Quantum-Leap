@@ -1,0 +1,148 @@
+---
+// ============================================================
+// BaseLayout.astro
+// De gedeelde HTML-shell die elke pagina omhult.
+// Bevat: <head>, sidebar, header slot, en footer.
+//
+// Gebruik:
+//   import BaseLayout from '../layouts/BaseLayout.astro';
+//   <BaseLayout title="..." modColor="var(--mod-sr)" activeNav="sr">
+//     ... pagina-inhoud ...
+//   </BaseLayout>
+// ============================================================
+
+const {
+  title,
+  modColor = 'var(--accent-gold)',  // Standaard goud als geen module
+  activeNav = '',                    // Welk nav-item actief is: 'sr' | 'qm' | 'em' | 'ana' | 'sm' | 'qft' | 'dashboard'
+  breadcrumb = [],                   // Array van { label, href } objecten
+  showMarkDone = false,              // Toon "Mark as done" knop (alleen op lespagina's)
+  currentLesson = '',                // Lesscode voor progress tracking: bv. 'sr-03'
+} = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{title} · Quantum Leap Physics</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+  <!-- Gedeelde stijlen -->
+  <link rel="stylesheet" href="/assets/css/global.css" />
+
+  <!-- Modulekleur instellen voor deze pagina -->
+  <style>
+    :root { --mod-color: {modColor}; }
+  </style>
+</head>
+<body>
+
+<!-- ================================================================
+     SIDEBAR
+     ================================================================ -->
+<aside class="sidebar">
+
+  <div class="sidebar__logo">
+    <div class="sidebar__logo-wordmark">Quantum<span>Leap</span></div>
+    <div class="sidebar__logo-sub">Physics Platform</div>
+  </div>
+
+  <div class="sidebar__section">
+    <div class="sidebar__section-label">Learn</div>
+    <a class={`nav-item ${activeNav === 'dashboard' ? 'active' : ''}`} href="/dashboard">
+      <span class="nav-item__icon">🏠</span> Dashboard
+    </a>
+    <a class={`nav-item ${activeNav === 'sr' ? 'active' : ''}`} href="/modules/sr">
+      <span class="nav-item__icon" style="color:var(--mod-sr)">⚡</span> Special Relativity
+    </a>
+    <a class={`nav-item ${activeNav === 'qm' ? 'active' : ''}`} href="/modules/qm">
+      <span class="nav-item__icon" style="color:var(--mod-qm)">🌀</span> Quantum Mechanics
+    </a>
+    <a class={`nav-item ${activeNav === 'em' ? 'active' : ''}`} href="/modules/em">
+      <span class="nav-item__icon" style="color:var(--mod-em)">🔵</span> Electrodynamics
+    </a>
+    <a class={`nav-item ${activeNav === 'ana' ? 'active' : ''}`} href="/modules/ana">
+      <span class="nav-item__icon" style="color:var(--mod-ana)">📐</span> Analytical Mechanics
+    </a>
+    <a class={`nav-item ${activeNav === 'sm' ? 'active' : ''}`} href="/modules/sm">
+      <span class="nav-item__icon" style="color:var(--mod-sm)">🌡️</span> Statistical Mechanics
+    </a>
+    <a class={`nav-item ${activeNav === 'qft' ? 'active' : ''}`} href="/modules/qft">
+      <span class="nav-item__icon" style="color:var(--mod-qft)">✴️</span> Quantum Field Theory
+    </a>
+  </div>
+
+  <div class="sidebar__section">
+    <div class="sidebar__section-label">My Progress</div>
+    <a class="nav-item" href="/progress"><span class="nav-item__icon">📊</span> Activity</a>
+    <a class="nav-item" href="/map"><span class="nav-item__icon">🗺️</span> Knowledge Map</a>
+  </div>
+
+  <div class="sidebar__section">
+    <div class="sidebar__section-label">Account</div>
+    <a class="nav-item" href="/"><span class="nav-item__icon">🌐</span> Homepage</a>
+    <a class="nav-item" href="/settings"><span class="nav-item__icon">⚙️</span> Settings</a>
+    <a class="nav-item" href="https://patreon.com/quantumleapphysics" target="_blank">
+      <span class="nav-item__icon">❤️</span> Patreon
+    </a>
+  </div>
+
+  <div class="sidebar__user">
+    <div class="sidebar__avatar">M</div>
+    <div>
+      <div class="sidebar__user-name">Mathis</div>
+      <div class="sidebar__user-role">Supporter</div>
+    </div>
+  </div>
+
+</aside>
+
+
+<!-- ================================================================
+     HEADER
+     ================================================================ -->
+<header class="header">
+  <div class="header__breadcrumb">
+    {breadcrumb.length === 0 ? (
+      <span class="current">{title}</span>
+    ) : (
+      breadcrumb.map((crumb, i) => (
+        <>
+          {i > 0 && <span class="sep">›</span>}
+          {i < breadcrumb.length - 1
+            ? <a href={crumb.href}>{crumb.label}</a>
+            : <span class="current">{crumb.label}</span>
+          }
+        </>
+      ))
+    )}
+  </div>
+  <div class="header__right">
+    <a href="/dashboard" class="btn-outline">← Dashboard</a>
+    {showMarkDone && (
+      <button id="btn-mark-done" class="btn-primary">Mark as done ✓</button>
+    )}
+  </div>
+</header>
+
+
+<!-- ================================================================
+     PAGE CONTENT — ingevuld door de specifieke pagina
+     ================================================================ -->
+<slot />
+
+
+<!-- Progress tracking initialiseren -->
+{currentLesson && (
+  <script type="module">
+    import { initPage } from '/assets/js/progress.js';
+    initPage('{currentLesson}');
+  </script>
+)}
+
+</body>
+</html>

@@ -1,0 +1,122 @@
+---
+// ============================================================
+// LessonLayout.astro
+// Layout voor alle lespagina's.
+// Leest de frontmatter van het .md bestand automatisch uit.
+// Jij hoeft hier NIETS aan te passen — alleen de .md bestanden.
+// ============================================================
+
+import BaseLayout from './BaseLayout.astro';
+
+const { frontmatter } = Astro.props;
+
+// Modulekleur automatisch bepalen uit de module-ID
+const modColors = {
+  sr:  'var(--mod-sr)',
+  qm:  'var(--mod-qm)',
+  em:  'var(--mod-em)',
+  ana: 'var(--mod-ana)',
+  sm:  'var(--mod-sm)',
+  qft: 'var(--mod-qft)',
+};
+const modColor = modColors[frontmatter.module] ?? 'var(--accent-gold)';
+
+// Module-info per ID
+const moduleInfo = {
+  sr:  { name: 'Special Relativity',    icon: '⚡' },
+  qm:  { name: 'Quantum Mechanics',     icon: '🌀' },
+  em:  { name: 'Electrodynamics',       icon: '🔵' },
+  ana: { name: 'Analytical Mechanics',  icon: '📐' },
+  sm:  { name: 'Statistical Mechanics', icon: '🌡️' },
+  qft: { name: 'Quantum Field Theory',  icon: '✴️' },
+};
+const mod = moduleInfo[frontmatter.module];
+
+const breadcrumb = [
+  { label: 'Dashboard', href: '/dashboard' },
+  { label: mod.name, href: `/modules/${frontmatter.module}` },
+  { label: `${frontmatter.code} · ${frontmatter.title}`, href: '#' },
+];
+---
+
+<BaseLayout
+  title={frontmatter.title}
+  modColor={modColor}
+  activeNav={frontmatter.module}
+  breadcrumb={breadcrumb}
+  showMarkDone={true}
+  currentLesson={frontmatter.code.toLowerCase()}
+>
+
+  <div class="main-module">
+
+    <!-- Left column: hero + lesson content -->
+    <div>
+
+      <!-- Module hero -->
+      <div class="module-hero">
+        <div class="module-hero__top">
+          <div class="module-hero__icon">{mod.icon}</div>
+          <div>
+            <div class="module-hero__meta">{frontmatter.code.split('-')[0]} · Module</div>
+            <div class="module-hero__title">{mod.name}</div>
+            <div class="module-hero__desc">{frontmatter.module_desc}</div>
+          </div>
+        </div>
+        <div class="module-hero__stats">
+          <div class="hero-stat"><span>📄</span> {frontmatter.total_lessons} lessons</div>
+          <div class="hero-stat"><span>🕐</span> {frontmatter.duration}m this lesson</div>
+        </div>
+      </div>
+
+      <!-- Lesson content -->
+      <div class="lesson-content">
+        <div class="lesson-header">
+          <div class="lesson-header__label">
+            {frontmatter.code} · Lesson {frontmatter.lesson_number} of {frontmatter.total_lessons}
+          </div>
+          <h1 class="lesson-header__title">{frontmatter.title}</h1>
+          <p class="lesson-header__subtitle">{frontmatter.subtitle}</p>
+        </div>
+
+        <div class="lesson-body">
+          <!-- Markdown inhoud komt hier -->
+          <slot />
+        </div>
+
+        <!-- Lesson navigation -->
+        <div class="lesson-nav">
+          {frontmatter.prev ? (
+            <a class="lesson-nav__btn" href={`/modules/${frontmatter.module}/${frontmatter.prev.file}`}>
+              <span>←</span>
+              <div>
+                <div class="lesson-nav__label">Previous</div>
+                <div class="lesson-nav__title">{frontmatter.prev.code} · {frontmatter.prev.title}</div>
+              </div>
+            </a>
+          ) : <div />}
+
+          {frontmatter.next ? (
+            <a class="lesson-nav__btn lesson-nav__btn--next" href={`/modules/${frontmatter.module}/${frontmatter.next.file}`}>
+              <div style="text-align:right">
+                <div class="lesson-nav__label">Next</div>
+                <div class="lesson-nav__title">{frontmatter.next.code} · {frontmatter.next.title}</div>
+              </div>
+              <span>→</span>
+            </a>
+          ) : <div />}
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Right column: lesson list sidebar -->
+    <!-- Dit wordt dynamisch ingeladen vanuit de module-config -->
+    <div class="lesson-sidebar">
+      <div class="lesson-sidebar__header">Lessons</div>
+      <slot name="lesson-list" />
+    </div>
+
+  </div>
+
+</BaseLayout>
