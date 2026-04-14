@@ -1,15 +1,13 @@
 ---
 // ============================================================
-// dashboard.astro
-// URL: /dashboard
+// dashboard.astro  —  /dashboard
 //
 // Wat aanpassen:
-//   - Continue banner: lestitel, beschrijving, link
-//   - Stats bar: getallen (worden later dynamisch via progress.js)
-//   - Module cards: status badge, voortgangsbalk
+//   Continue banner : lestitel, beschrijving, href
+//   Stats bar       : getallen
+//   Module cards    : badge, voortgangsbalk, href
 // ============================================================
 ---
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,7 +15,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Dashboard · Quantum Leap Physics</title>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="/assets/css/global.css" />
+  <link rel="stylesheet" href="/Quantum-Leap/assets/css/global.css" />
   <style>
     :root { --mod-color: var(--accent-gold); }
   </style>
@@ -28,13 +26,219 @@
      SIDEBAR
      ================================================================ -->
 <aside class="sidebar">
+
   <div class="sidebar__logo">
     <div class="sidebar__logo-wordmark">Quantum<span>Leap</span></div>
     <div class="sidebar__logo-sub">Physics Platform</div>
   </div>
 
+  <!-- LEARN -->
   <div class="sidebar__section">
     <div class="sidebar__section-label">Learn</div>
+    <a class="nav-item active" href="/Quantum-Leap/dashboard">
+      <span class="nav-item__icon">🏠</span> Dashboard
+    </a>
+    <a class="nav-item" href="/Quantum-Leap/modules/sr">
+      <span class="nav-item__icon" style="color:var(--mod-sr)">⚡</span> Special Relativity
+    </a>
+    <a class="nav-item" href="/Quantum-Leap/modules/qm">
+      <span class="nav-item__icon" style="color:var(--mod-qm)">🌀</span> Quantum Mechanics
+    </a>
+    <a class="nav-item" href="/Quantum-Leap/modules/em">
+      <span class="nav-item__icon" style="color:var(--mod-em)">🔵</span> Electrodynamics
+    </a>
+    <a class="nav-item" href="/Quantum-Leap/modules/ana">
+      <span class="nav-item__icon" style="color:var(--mod-ana)">📐</span> Analytical Mechanics
+    </a>
+    <a class="nav-item" href="/Quantum-Leap/modules/sm">
+      <span class="nav-item__icon" style="color:var(--mod-sm)">🌡️</span> Statistical Mechanics
+    </a>
+    <a class="nav-item" href="/Quantum-Leap/modules/qft">
+      <span class="nav-item__icon" style="color:var(--mod-qft)">✴️</span> Quantum Field Theory
+    </a>
+  </div>
+
+  <!-- MY PROGRESS -->
+  <div class="sidebar__section">
+    <div class="sidebar__section-label">My Progress</div>
+    <a class="nav-item" href="#"><span class="nav-item__icon">📊</span> Activity</a>
+    <a class="nav-item" href="#"><span class="nav-item__icon">🗺️</span> Knowledge Map</a>
+  </div>
+
+  <!-- ACCOUNT -->
+  <div class="sidebar__section">
+    <div class="sidebar__section-label">Account</div>
+    <a class="nav-item" href="/Quantum-Leap/"><span class="nav-item__icon">🌐</span> Homepage</a>
+    <a class="nav-item" href="#"><span class="nav-item__icon">⚙️</span> Settings</a>
+    <a class="nav-item" href="https://patreon.com/quantumleapphysics" target="_blank">
+      <span class="nav-item__icon">❤️</span> Patreon
+    </a>
+  </div>
+
+  <!-- User -->
+  <div class="sidebar__user">
+    <div class="sidebar__avatar">M</div>
+    <div>
+      <div class="sidebar__user-name">Mathis</div>
+      <div class="sidebar__user-role">Supporter</div>
+    </div>
+  </div>
+
+</aside>
+
+
+<!-- ================================================================
+     HEADER
+     ================================================================ -->
+<header class="header">
+  <div class="header__title">Dashboard</div>
+  <div class="header__right">
+    <div class="streak-badge">🔥 7-day streak</div>
+    <a href="/Quantum-Leap/" class="btn-outline">← Homepage</a>
+  </div>
+</header>
+
+
+<!-- ================================================================
+     MAIN
+     ================================================================ -->
+<main class="main-dashboard">
+
+  <!-- ── Continue banner ── -->
+  <div class="continue-banner">
+    <div class="continue-banner__icon">⚡</div>
+    <div class="continue-banner__body">
+      <div class="continue-banner__label">Continue where you left off</div>
+      <div class="continue-banner__lesson">SR-03 · Time Dilation</div>
+      <div class="continue-banner__desc">Moving clocks run slow. The light clock thought experiment is next.</div>
+    </div>
+    <a href="/Quantum-Leap/modules/sr/sr-03" class="btn-primary">Continue →</a>
+  </div>
+
+  <!-- ── All modules ── -->
+  <div class="section-header">
+    <h2 class="section-title">All modules</h2>
+    <a class="section-link" href="#">See full curriculum →</a>
+  </div>
+
+  <div class="modules-grid">
+
+    <!-- CARD 1 — Special Relativity · IN PROGRESS -->
+    <a class="module-card" href="/Quantum-Leap/modules/sr"
+       style="--mod-color:var(--mod-sr); text-decoration:none; color:inherit;">
+      <div class="module-card__top">
+        <div class="module-card__icon">⚡</div>
+        <span class="badge badge--progress">In progress</span>
+      </div>
+      <div class="module-card__code">SR · Module 1</div>
+      <div class="module-card__title">Special Relativity</div>
+      <div class="module-card__desc">Time dilation, length contraction, E=mc². Why Newton breaks down at high speeds.</div>
+      <div class="module-card__meta">
+        <span>📄 8 lessons</span>
+        <span>🕐 ~9h</span>
+      </div>
+      <div class="progress-bar-wrap">
+        <div class="progress-bar-track">
+          <div class="progress-bar-fill" style="width:38%"></div>
+        </div>
+        <div class="progress-bar-labels">
+          <span class="done">3 of 8 done</span>
+          <span class="pct">38%</span>
+        </div>
+      </div>
+    </a>
+
+    <!-- CARD 2 — Quantum Mechanics · AVAILABLE -->
+    <a class="module-card" href="/Quantum-Leap/modules/qm"
+       style="--mod-color:var(--mod-qm); text-decoration:none; color:inherit;">
+      <div class="module-card__top">
+        <div class="module-card__icon">🌀</div>
+        <span class="badge badge--available">Available</span>
+      </div>
+      <div class="module-card__code">QM · Module 2</div>
+      <div class="module-card__title">Quantum Mechanics</div>
+      <div class="module-card__desc">Wave functions, superposition, the double-slit experiment. The world at its smallest scale.</div>
+      <div class="module-card__meta">
+        <span>📄 10 lessons</span>
+        <span>🕐 ~12h</span>
+      </div>
+      <div class="progress-bar-labels" style="margin-top:0">
+        <span class="done">Not started</span>
+        <span class="module-card__start">Start →</span>
+      </div>
+    </a>
+
+    <!-- CARD 3 — Electrodynamics · COMING SOON -->
+    <div class="module-card" style="--mod-color:var(--mod-em); opacity:0.6">
+      <div class="module-card__top">
+        <div class="module-card__icon">🔵</div>
+        <span class="badge badge--soon">Coming soon</span>
+      </div>
+      <div class="module-card__code">EM · Module 3</div>
+      <div class="module-card__title">Electrodynamics</div>
+      <div class="module-card__desc">Maxwell's equations, electromagnetic waves, and the deep roots of light.</div>
+      <div class="module-card__meta">
+        <span>📄 ~12 lessons</span>
+        <span>🕐 ~14h</span>
+      </div>
+      <div class="module-card__action">Coming soon</div>
+    </div>
+
+    <!-- CARD 4 — Analytical Mechanics · COMING SOON -->
+    <div class="module-card" style="--mod-color:var(--mod-ana); opacity:0.6">
+      <div class="module-card__top">
+        <div class="module-card__icon">📐</div>
+        <span class="badge badge--soon">Coming soon</span>
+      </div>
+      <div class="module-card__code">ANA · Module 4</div>
+      <div class="module-card__title">Analytical Mechanics</div>
+      <div class="module-card__desc">Lagrangian, Hamiltonian, the principle of least action. The deep structure of classical physics.</div>
+      <div class="module-card__meta">
+        <span>📄 ~10 lessons</span>
+        <span>🕐 ~11h</span>
+      </div>
+      <div class="module-card__action">Coming soon</div>
+    </div>
+
+    <!-- CARD 5 — Statistical Mechanics · COMING SOON -->
+    <div class="module-card" style="--mod-color:var(--mod-sm); opacity:0.6">
+      <div class="module-card__top">
+        <div class="module-card__icon">🌡️</div>
+        <span class="badge badge--soon">Coming soon</span>
+      </div>
+      <div class="module-card__code">SM · Module 5</div>
+      <div class="module-card__title">Statistical Mechanics</div>
+      <div class="module-card__desc">Entropy, Boltzmann, thermodynamics derived from microscopic principles.</div>
+      <div class="module-card__meta">
+        <span>📄 ~9 lessons</span>
+        <span>🕐 ~10h</span>
+      </div>
+      <div class="module-card__action">Coming soon</div>
+    </div>
+
+    <!-- CARD 6 — Quantum Field Theory · COMING SOON -->
+    <div class="module-card" style="--mod-color:var(--mod-qft); opacity:0.6">
+      <div class="module-card__top">
+        <div class="module-card__icon">✴️</div>
+        <span class="badge badge--soon">Coming soon</span>
+      </div>
+      <div class="module-card__code">QFT · Module 6</div>
+      <div class="module-card__title">Quantum Field Theory</div>
+      <div class="module-card__desc">Fields, particles, Feynman diagrams. The language of the Standard Model.</div>
+      <div class="module-card__meta">
+        <span>📄 ~14 lessons</span>
+        <span>🕐 ~18h</span>
+      </div>
+      <div class="module-card__action">Coming soon</div>
+    </div>
+
+  </div>
+  <!-- /MODULE GRID -->
+
+</main>
+
+</body>
+</html>    <div class="sidebar__section-label">Learn</div>
     <a class="nav-item active" href="/dashboard">
       <span class="nav-item__icon">🏠</span> Dashboard
     </a>
