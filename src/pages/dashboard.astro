@@ -2,10 +2,20 @@
 // ============================================================
 // dashboard.astro  —  /dashboard
 //
-// Wat aanpassen:
-//   Continue banner  : lestitel, beschrijving, href
-//   Hoofdmodules     : badge, voortgangsbalk
-//   Zijmodules       : toevoegen/verwijderen onder de juiste sectie
+// Structuur:
+//   - Continue banner
+//   - Core modules (8 stuks, 2-kolomsgrid)
+//   - Per hoofdmodule een zijmodule-rij direct eronder
+//
+// Modulekleuren:
+//   ana  #a855f7  paars     Analytical Mechanics
+//   cft  #3b82f6  blauw     Classical Field Theory
+//   ced  #06b6d4  cyaan     Classical Electrodynamics
+//   sr   #f5a623  goud      Special Relativity
+//   qm   #00c9a7  teal      Quantum Mechanics
+//   sm   #22c55e  groen     Statistical Mechanics
+//   qft  #ef4444  rood      Quantum Field Theory
+//   std  #e879f9  roze      Standard Model
 // ============================================================
 ---
 <!DOCTYPE html>
@@ -26,38 +36,39 @@
      SIDEBAR
      ================================================================ -->
 <aside class="sidebar">
-
   <div class="sidebar__logo">
     <div class="sidebar__logo-wordmark">Quantum<span>Leap</span></div>
     <div class="sidebar__logo-sub">Physics Platform</div>
   </div>
 
   <div class="sidebar__section">
-    <div class="sidebar__section-label">Learn</div>
+    <div class="sidebar__section-label">Core modules</div>
     <a class="nav-item active" href="/Quantum-Leap/dashboard">
       <span class="nav-item__icon">🏠</span> Dashboard
-    </a>
-    <a class="nav-item" href="/Quantum-Leap/modules/sr">
-      <span class="nav-item__icon" style="color:var(--mod-sr)">🚀</span> Special Relativity
     </a>
     <a class="nav-item" href="/Quantum-Leap/modules/ana">
       <span class="nav-item__icon" style="color:var(--mod-ana)">📐</span> Analytical Mechanics
     </a>
+    <a class="nav-item" href="/Quantum-Leap/modules/cft">
+      <span class="nav-item__icon" style="color:var(--mod-cft)">🌊</span> Classical Field Theory
+    </a>
+    <a class="nav-item" href="/Quantum-Leap/modules/ced">
+      <span class="nav-item__icon" style="color:var(--mod-ced)">⚡</span> Classical Electrodynamics
+    </a>
+    <a class="nav-item" href="/Quantum-Leap/modules/sr">
+      <span class="nav-item__icon" style="color:var(--mod-sr)">🚀</span> Special Relativity
+    </a>
     <a class="nav-item" href="/Quantum-Leap/modules/qm">
       <span class="nav-item__icon" style="color:var(--mod-qm)">🌀</span> Quantum Mechanics
     </a>
-    <a class="nav-item" href="/Quantum-Leap/modules/em">
-      <span class="nav-item__icon" style="color:var(--mod-em)">⚡</span> Electrodynamics
+    <a class="nav-item" href="/Quantum-Leap/modules/sm">
+      <span class="nav-item__icon" style="color:var(--mod-sm)">🌡️</span> Statistical Mechanics
     </a>
     <a class="nav-item" href="/Quantum-Leap/modules/qft">
       <span class="nav-item__icon" style="color:var(--mod-qft)">✴️</span> Quantum Field Theory
     </a>
-  </div>
-
-  <div class="sidebar__section">
-    <div class="sidebar__section-label">Side Modules</div>
-    <a class="nav-item" href="/Quantum-Leap/modules/sm">
-      <span class="nav-item__icon" style="color:var(--mod-sm)">🌡️</span> Statistical Mechanics
+    <a class="nav-item" href="/Quantum-Leap/modules/std">
+      <span class="nav-item__icon" style="color:var(--mod-std)">⚛️</span> Standard Model
     </a>
   </div>
 
@@ -83,7 +94,6 @@
       <div class="sidebar__user-role">Supporter</div>
     </div>
   </div>
-
 </aside>
 
 
@@ -106,97 +116,137 @@
 
   <!-- ── Continue banner ── -->
   <div class="continue-banner">
-    <div class="continue-banner__icon">🚀</div>
+    <div class="continue-banner__icon">📐</div>
     <div class="continue-banner__body">
       <div class="continue-banner__label">Continue where you left off</div>
-      <div class="continue-banner__lesson">SR-03 · Time Dilation</div>
-      <div class="continue-banner__desc">Moving clocks run slow. The light clock thought experiment is next.</div>
+      <div class="continue-banner__lesson">ANA-03 · The Euler-Lagrange Equations</div>
+      <div class="continue-banner__desc">Deriving equations of motion from the action principle — without a single force.</div>
     </div>
-    <a href="/Quantum-Leap/modules/sr/sr-03" class="btn-primary">Continue →</a>
+    <a href="/Quantum-Leap/modules/ana/ana-03" class="btn-primary">Continue →</a>
+  </div>
+
+  <!-- ── Section header ── -->
+  <div class="section-header">
+    <h2 class="section-title">All modules</h2>
+    <a class="section-link" href="#">See full curriculum →</a>
   </div>
 
 
   <!-- ================================================================
-       HOOFDMODULES
-       Vaste volgorde van het curriculum — altijd 2 kolommen
+       MODULE 1 — ANALYTICAL MECHANICS
        ================================================================ -->
-  <div class="section-header">
-    <h2 class="section-title">Core modules</h2>
-    <a class="section-link" href="#">See full curriculum →</a>
-  </div>
+  <div class="modules-grid" style="margin-bottom:12px;">
 
-  <div class="modules-grid">
-
-    <!-- MODULE 1 — Special Relativity · IN PROGRESS -->
-    <a class="module-card" href="/Quantum-Leap/modules/sr"
-       style="--mod-color:var(--mod-sr); text-decoration:none; color:inherit;">
-      <div class="module-card__top">
-        <div class="module-card__icon">🚀</div>
-        <span class="badge badge--progress">In progress</span>
-      </div>
-      <div class="module-card__code">Module 1 · SR</div>
-      <div class="module-card__title">Special Relativity</div>
-      <div class="module-card__desc">Time dilation, length contraction, E=mc². Why Newton breaks down at high speeds.</div>
-      <div class="module-card__meta">
-        <span>📄 8 lessons</span>
-        <span>🕐 ~9h</span>
-      </div>
-      <div class="progress-bar-wrap">
-        <div class="progress-bar-track">
-          <div class="progress-bar-fill" style="width:38%"></div>
-        </div>
-        <div class="progress-bar-labels">
-          <span class="done">3 of 8 done</span>
-          <span class="pct">38%</span>
-        </div>
-      </div>
-    </a>
-
-    <!-- MODULE 2 — Analytical Mechanics · COMING SOON -->
-    <div class="module-card" style="--mod-color:var(--mod-ana); opacity:0.6">
+    <a class="module-card" href="/Quantum-Leap/modules/ana"
+       style="--mod-color:var(--mod-ana); text-decoration:none; color:inherit;">
       <div class="module-card__top">
         <div class="module-card__icon">📐</div>
-        <span class="badge badge--soon">Coming soon</span>
+        <span class="badge badge--progress">In progress</span>
       </div>
-      <div class="module-card__code">Module 2 · ANA</div>
+      <div class="module-card__code">Module 1 · ANA</div>
       <div class="module-card__title">Analytical Mechanics</div>
-      <div class="module-card__desc">Lagrangian, Hamiltonian, the principle of least action. The deep structure of classical physics.</div>
+      <div class="module-card__desc">Lagrangian, Hamiltonian, action principle. The deep structure underneath Newtonian mechanics.</div>
       <div class="module-card__meta">
         <span>📄 ~10 lessons</span>
         <span>🕐 ~11h</span>
       </div>
-      <div class="module-card__action">Coming soon</div>
-    </div>
-
-    <!-- MODULE 3 — Quantum Mechanics · AVAILABLE -->
-    <a class="module-card" href="/Quantum-Leap/modules/qm"
-       style="--mod-color:var(--mod-qm); text-decoration:none; color:inherit;">
-      <div class="module-card__top">
-        <div class="module-card__icon">🌀</div>
-        <span class="badge badge--available">Available</span>
-      </div>
-      <div class="module-card__code">Module 3 · QM</div>
-      <div class="module-card__title">Quantum Mechanics</div>
-      <div class="module-card__desc">Wave functions, superposition, the double-slit experiment. The world at its smallest scale.</div>
-      <div class="module-card__meta">
-        <span>📄 10 lessons</span>
-        <span>🕐 ~12h</span>
-      </div>
-      <div class="progress-bar-labels" style="margin-top:0">
-        <span class="done">Not started</span>
-        <span class="module-card__start">Start →</span>
+      <div class="progress-bar-wrap">
+        <div class="progress-bar-track">
+          <div class="progress-bar-fill" style="width:25%"></div>
+        </div>
+        <div class="progress-bar-labels">
+          <span class="done">2 of 10 done</span>
+          <span class="pct">25%</span>
+        </div>
       </div>
     </a>
 
-    <!-- MODULE 4 — Electrodynamics · COMING SOON -->
-    <div class="module-card" style="--mod-color:var(--mod-em); opacity:0.6">
+    <!-- Zijmodules na module 1 — 2 stuks naast de hoofdmodulekaart -->
+    <div class="side-modules-inline">
+      <div class="side-card" style="--mod-color:var(--mod-ana)">
+        <div class="side-card__top">
+          <div class="side-card__icon">🪐</div>
+          <span class="badge badge--soon">Coming soon</span>
+        </div>
+        <div class="side-card__code">1A · Celestial Mechanics</div>
+        <div class="side-card__title">Celestial Mechanics</div>
+        <div class="side-card__desc">Kepler orbits, n-body problem, gravitational resonances.</div>
+        <div class="side-card__meta"><span>📄 ~6 lessons</span></div>
+      </div>
+      <div class="side-card" style="--mod-color:var(--mod-ana)">
+        <div class="side-card__top">
+          <div class="side-card__icon">🌀</div>
+          <span class="badge badge--soon">Coming soon</span>
+        </div>
+        <div class="side-card__code">1B · Chaos Theory</div>
+        <div class="side-card__title">Chaos & Dynamical Systems</div>
+        <div class="side-card__desc">Lyapunov exponents, attractors, bifurcations.</div>
+        <div class="side-card__meta"><span>📄 ~6 lessons</span></div>
+      </div>
+    </div>
+
+  </div>
+
+
+  <!-- ================================================================
+       MODULE 2 — CLASSICAL FIELD THEORY
+       ================================================================ -->
+  <div class="modules-grid" style="margin-bottom:12px;">
+
+    <div class="module-card" style="--mod-color:var(--mod-cft); opacity:0.6">
+      <div class="module-card__top">
+        <div class="module-card__icon">🌊</div>
+        <span class="badge badge--soon">Coming soon</span>
+      </div>
+      <div class="module-card__code">Module 2 · CFT</div>
+      <div class="module-card__title">Classical Field Theory</div>
+      <div class="module-card__desc">Fields as the continuum limit of particles. Noether's theorem. Symmetry generates conservation laws.</div>
+      <div class="module-card__meta">
+        <span>📄 ~9 lessons</span>
+        <span>🕐 ~10h</span>
+      </div>
+      <div class="module-card__action">Coming soon</div>
+    </div>
+
+    <div class="side-modules-inline" style="opacity:0.5">
+      <div class="side-card" style="--mod-color:var(--mod-cft)">
+        <div class="side-card__top">
+          <div class="side-card__icon">🧱</div>
+          <span class="badge badge--soon">Coming soon</span>
+        </div>
+        <div class="side-card__code">2A · Continuum Mechanics</div>
+        <div class="side-card__title">Continuum Mechanics</div>
+        <div class="side-card__desc">Elasticity, fluid mechanics, stress tensors.</div>
+        <div class="side-card__meta"><span>📄 ~6 lessons</span></div>
+      </div>
+      <div class="side-card" style="--mod-color:var(--mod-cft)">
+        <div class="side-card__top">
+          <div class="side-card__icon">🔊</div>
+          <span class="badge badge--soon">Coming soon</span>
+        </div>
+        <div class="side-card__code">2B · Waves & Acoustics</div>
+        <div class="side-card__title">Waves & Acoustics</div>
+        <div class="side-card__desc">Dispersion, wave packets, group velocity.</div>
+        <div class="side-card__meta"><span>📄 ~5 lessons</span></div>
+      </div>
+    </div>
+
+  </div>
+
+
+  <!-- ================================================================
+       MODULE 3 — CLASSICAL ELECTRODYNAMICS
+       ================================================================ -->
+  <div class="modules-grid" style="margin-bottom:12px;">
+
+    <div class="module-card" style="--mod-color:var(--mod-ced); opacity:0.6">
       <div class="module-card__top">
         <div class="module-card__icon">⚡</div>
         <span class="badge badge--soon">Coming soon</span>
       </div>
-      <div class="module-card__code">Module 4 · EM</div>
-      <div class="module-card__title">Electrodynamics</div>
-      <div class="module-card__desc">Maxwell's equations, electromagnetic waves, and the deep roots of light.</div>
+      <div class="module-card__code">Module 3 · CED</div>
+      <div class="module-card__title">Classical Electrodynamics</div>
+      <div class="module-card__desc">Maxwell's equations, potentials, radiation. The first complete field theory.</div>
       <div class="module-card__meta">
         <span>📄 ~12 lessons</span>
         <span>🕐 ~14h</span>
@@ -204,63 +254,266 @@
       <div class="module-card__action">Coming soon</div>
     </div>
 
-  </div>
+    <div class="side-modules-inline" style="opacity:0.5">
+      <div class="side-card" style="--mod-color:var(--mod-ced)">
+        <div class="side-card__top">
+          <div class="side-card__icon">🔭</div>
+          <span class="badge badge--soon">Coming soon</span>
+        </div>
+        <div class="side-card__code">3A · Classical Optics</div>
+        <div class="side-card__title">Classical Optics</div>
+        <div class="side-card__desc">Interference, diffraction, Fourier methods.</div>
+        <div class="side-card__meta"><span>📄 ~6 lessons</span></div>
+      </div>
+      <div class="side-card" style="--mod-color:var(--mod-ced)">
+        <div class="side-card__top">
+          <div class="side-card__icon">☀️</div>
+          <span class="badge badge--soon">Coming soon</span>
+        </div>
+        <div class="side-card__code">3B · Plasma Physics</div>
+        <div class="side-card__title">Plasma Physics</div>
+        <div class="side-card__desc">MHD, Debye shielding, plasma waves.</div>
+        <div class="side-card__meta"><span>📄 ~6 lessons</span></div>
+      </div>
+    </div>
 
-  <!-- MODULE 5 — QFT · volledig breed als eindpunt -->
-  <div class="module-card module-card--wide" style="--mod-color:var(--mod-qft); opacity:0.6; margin-top:20px;">
-    <div class="module-card__top">
-      <div class="module-card__icon">✴️</div>
-      <span class="badge badge--soon">Coming soon</span>
-    </div>
-    <div class="module-card__code">Module 5 · QFT</div>
-    <div class="module-card__title">Quantum Field Theory</div>
-    <div class="module-card__desc">Fields, particles, Feynman diagrams. The language of the Standard Model — the final destination.</div>
-    <div class="module-card__meta">
-      <span>📄 ~14 lessons</span>
-      <span>🕐 ~18h</span>
-    </div>
-    <div class="module-card__action">Coming soon</div>
   </div>
 
 
   <!-- ================================================================
-       ZIJMODULES
-       Aanvullend, smaller, 3-kolomsgrid
-       Nummering: [hoofdmodulenummer][letter] — bv. 3A, 4B
+       MODULE 4 — SPECIAL RELATIVITY
        ================================================================ -->
-  <div class="section-header" style="margin-top:48px;">
-    <h2 class="section-title">Side modules
-      <span class="section-title__sub">Optional depth — follow your curiosity</span>
-    </h2>
-  </div>
+  <div class="modules-grid" style="margin-bottom:12px;">
 
-  <div class="side-modules-grid">
-
-    <!-- ZIJMODULE 4A — Statistical Mechanics (bij Module 4: EM → QFT overgang) -->
-    <div class="side-card" style="--mod-color:var(--mod-sm); opacity:0.6">
-      <div class="side-card__top">
-        <div class="side-card__icon">🌡️</div>
+    <div class="module-card" style="--mod-color:var(--mod-sr); opacity:0.6">
+      <div class="module-card__top">
+        <div class="module-card__icon">🚀</div>
         <span class="badge badge--soon">Coming soon</span>
       </div>
-      <div class="side-card__code">4A · Statistical Mechanics</div>
-      <div class="side-card__title">Statistical Mechanics</div>
-      <div class="side-card__desc">Entropy, Boltzmann, thermodynamics from microscopic principles.</div>
-      <div class="side-card__meta">
-        <span>📄 ~9 lessons</span>
-        <span>🕐 ~10h</span>
+      <div class="module-card__code">Module 4 · SR</div>
+      <div class="module-card__title">Special Relativity</div>
+      <div class="module-card__desc">Minkowski spacetime, 4-vectors, tensors. The geometry of space and time unified.</div>
+      <div class="module-card__meta">
+        <span>📄 ~8 lessons</span>
+        <span>🕐 ~9h</span>
+      </div>
+      <div class="module-card__action">Coming soon</div>
+    </div>
+
+    <div class="side-modules-inline" style="opacity:0.5">
+      <div class="side-card" style="--mod-color:var(--mod-sr)">
+        <div class="side-card__top">
+          <div class="side-card__icon">🌌</div>
+          <span class="badge badge--soon">Coming soon</span>
+        </div>
+        <div class="side-card__code">4A · General Relativity</div>
+        <div class="side-card__title">General Relativity</div>
+        <div class="side-card__desc">Metric, curvature, Einstein field equations.</div>
+        <div class="side-card__meta"><span>📄 ~8 lessons</span></div>
+      </div>
+      <div class="side-card" style="--mod-color:var(--mod-sr)">
+        <div class="side-card__top">
+          <div class="side-card__icon">🔭</div>
+          <span class="badge badge--soon">Coming soon</span>
+        </div>
+        <div class="side-card__code">4B · Cosmology</div>
+        <div class="side-card__title">Cosmology</div>
+        <div class="side-card__desc">FLRW metric, expansion, dark energy.</div>
+        <div class="side-card__meta"><span>📄 ~6 lessons</span></div>
       </div>
     </div>
 
-    <!--
-    ================================================================
-    ZIJMODULE TOEVOEGEN — kopieer het blok hierboven en pas aan:
-      style="--mod-color: var(--mod-XX)"  → kleur van de verwante module
-      side-card__code                     → bv. "4B · Solid State Physics"
-      side-card__title                    → naam
-      side-card__desc                     → korte beschrijving
-    ================================================================
-    -->
+  </div>
 
+
+  <!-- ================================================================
+       MODULE 5 — QUANTUM MECHANICS
+       ================================================================ -->
+  <div class="modules-grid" style="margin-bottom:12px;">
+
+    <div class="module-card" style="--mod-color:var(--mod-qm); opacity:0.6">
+      <div class="module-card__top">
+        <div class="module-card__icon">🌀</div>
+        <span class="badge badge--soon">Coming soon</span>
+      </div>
+      <div class="module-card__code">Module 5 · QM</div>
+      <div class="module-card__title">Quantum Mechanics</div>
+      <div class="module-card__desc">Hilbert spaces, Schrödinger equation, operators. The world at its smallest scale.</div>
+      <div class="module-card__meta">
+        <span>📄 ~12 lessons</span>
+        <span>🕐 ~14h</span>
+      </div>
+      <div class="module-card__action">Coming soon</div>
+    </div>
+
+    <div class="side-modules-inline" style="opacity:0.5">
+      <div class="side-card" style="--mod-color:var(--mod-qm)">
+        <div class="side-card__top">
+          <div class="side-card__icon">💻</div>
+          <span class="badge badge--soon">Coming soon</span>
+        </div>
+        <div class="side-card__code">5A · Quantum Information</div>
+        <div class="side-card__title">Quantum Information</div>
+        <div class="side-card__desc">Qubits, entanglement, quantum computing.</div>
+        <div class="side-card__meta"><span>📄 ~7 lessons</span></div>
+      </div>
+      <div class="side-card" style="--mod-color:var(--mod-qm)">
+        <div class="side-card__top">
+          <div class="side-card__icon">⚛️</div>
+          <span class="badge badge--soon">Coming soon</span>
+        </div>
+        <div class="side-card__code">5B · Atomic & Molecular Physics</div>
+        <div class="side-card__title">Atomic & Molecular Physics</div>
+        <div class="side-card__desc">Hydrogen atom, fine structure, spectra.</div>
+        <div class="side-card__meta"><span>📄 ~6 lessons</span></div>
+      </div>
+      <div class="side-card" style="--mod-color:var(--mod-qm)">
+        <div class="side-card__top">
+          <div class="side-card__icon">💡</div>
+          <span class="badge badge--soon">Coming soon</span>
+        </div>
+        <div class="side-card__code">5C · Quantum Optics</div>
+        <div class="side-card__title">Quantum Optics</div>
+        <div class="side-card__desc">Laser, coherence, Jaynes-Cummings model.</div>
+        <div class="side-card__meta"><span>📄 ~6 lessons</span></div>
+      </div>
+    </div>
+
+  </div>
+
+
+  <!-- ================================================================
+       MODULE 6 — STATISTICAL MECHANICS
+       ================================================================ -->
+  <div class="modules-grid" style="margin-bottom:12px;">
+
+    <div class="module-card" style="--mod-color:var(--mod-sm); opacity:0.6">
+      <div class="module-card__top">
+        <div class="module-card__icon">🌡️</div>
+        <span class="badge badge--soon">Coming soon</span>
+      </div>
+      <div class="module-card__code">Module 6 · SM</div>
+      <div class="module-card__title">Statistical Mechanics</div>
+      <div class="module-card__desc">Ensembles, entropy, Boltzmann distribution. Thermodynamics derived from first principles.</div>
+      <div class="module-card__meta">
+        <span>📄 ~10 lessons</span>
+        <span>🕐 ~11h</span>
+      </div>
+      <div class="module-card__action">Coming soon</div>
+    </div>
+
+    <div class="side-modules-inline" style="opacity:0.5">
+      <div class="side-card" style="--mod-color:var(--mod-sm)">
+        <div class="side-card__top">
+          <div class="side-card__icon">🔬</div>
+          <span class="badge badge--soon">Coming soon</span>
+        </div>
+        <div class="side-card__code">6A · Solid State Physics</div>
+        <div class="side-card__title">Solid State Physics</div>
+        <div class="side-card__desc">Band structure, conductivity, Fermi surface.</div>
+        <div class="side-card__meta"><span>📄 ~8 lessons</span></div>
+      </div>
+      <div class="side-card" style="--mod-color:var(--mod-sm)">
+        <div class="side-card__top">
+          <div class="side-card__icon">🧬</div>
+          <span class="badge badge--soon">Coming soon</span>
+        </div>
+        <div class="side-card__code">6B · Biophysics & Complex Systems</div>
+        <div class="side-card__title">Biophysics & Complex Systems</div>
+        <div class="side-card__desc">Stochastic processes, networks, emergence.</div>
+        <div class="side-card__meta"><span>📄 ~6 lessons</span></div>
+      </div>
+    </div>
+
+  </div>
+
+
+  <!-- ================================================================
+       MODULE 7 — QUANTUM FIELD THEORY
+       ================================================================ -->
+  <div class="modules-grid" style="margin-bottom:12px;">
+
+    <div class="module-card" style="--mod-color:var(--mod-qft); opacity:0.6">
+      <div class="module-card__top">
+        <div class="module-card__icon">✴️</div>
+        <span class="badge badge--soon">Coming soon</span>
+      </div>
+      <div class="module-card__code">Module 7 · QFT</div>
+      <div class="module-card__title">Quantum Field Theory</div>
+      <div class="module-card__desc">Free fields, interactions, Feynman diagrams. Particles as excitations of quantum fields.</div>
+      <div class="module-card__meta">
+        <span>📄 ~14 lessons</span>
+        <span>🕐 ~18h</span>
+      </div>
+      <div class="module-card__action">Coming soon</div>
+    </div>
+
+    <div class="side-modules-inline" style="opacity:0.5">
+      <div class="side-card" style="--mod-color:var(--mod-qft)">
+        <div class="side-card__top">
+          <div class="side-card__icon">🧲</div>
+          <span class="badge badge--soon">Coming soon</span>
+        </div>
+        <div class="side-card__code">7A · QFT in Condensed Matter</div>
+        <div class="side-card__title">QFT in Condensed Matter</div>
+        <div class="side-card__desc">Superconductivity, Hubbard model, phonons.</div>
+        <div class="side-card__meta"><span>📄 ~7 lessons</span></div>
+      </div>
+      <div class="side-card" style="--mod-color:var(--mod-qft)">
+        <div class="side-card__top">
+          <div class="side-card__icon">🕳️</div>
+          <span class="badge badge--soon">Coming soon</span>
+        </div>
+        <div class="side-card__code">7B · Quantum Gravity — Intro</div>
+        <div class="side-card__title">Quantum Gravity — Intro</div>
+        <div class="side-card__desc">Planck scale, open problems, current directions.</div>
+        <div class="side-card__meta"><span>📄 ~5 lessons</span></div>
+      </div>
+    </div>
+
+  </div>
+
+
+  <!-- ================================================================
+       MODULE 8 — THE STANDARD MODEL  (breed als eindpunt)
+       ================================================================ -->
+  <div class="module-card module-card--wide" style="--mod-color:var(--mod-std); opacity:0.6; margin-bottom:12px;">
+    <div class="module-card__top">
+      <div class="module-card__icon">⚛️</div>
+      <span class="badge badge--soon">Coming soon</span>
+    </div>
+    <div class="module-card__code">Module 8 · STD — The Final Destination</div>
+    <div class="module-card__title">The Standard Model</div>
+    <div class="module-card__desc">Yang-Mills gauge theory, QED, QCD, Higgs mechanism, electroweak unification. The most precisely tested theory in the history of science.</div>
+    <div class="module-card__meta">
+      <span>📄 ~16 lessons</span>
+      <span>🕐 ~20h</span>
+    </div>
+    <div class="module-card__action">Coming soon</div>
+  </div>
+
+  <!-- Zijmodules na module 8 -->
+  <div class="side-modules-grid" style="margin-bottom:48px; opacity:0.5">
+    <div class="side-card" style="--mod-color:var(--mod-std)">
+      <div class="side-card__top">
+        <div class="side-card__icon">💥</div>
+        <span class="badge badge--soon">Coming soon</span>
+      </div>
+      <div class="side-card__code">8A · CERN & Particle Experiments</div>
+      <div class="side-card__title">CERN & Particle Experiments</div>
+      <div class="side-card__desc">Collisions, detectors, cross-sections, discovery physics.</div>
+      <div class="side-card__meta"><span>📄 ~6 lessons</span></div>
+    </div>
+    <div class="side-card" style="--mod-color:var(--mod-std)">
+      <div class="side-card__top">
+        <div class="side-card__icon">🔮</div>
+        <span class="badge badge--soon">Coming soon</span>
+      </div>
+      <div class="side-card__code">8B · Beyond the Standard Model</div>
+      <div class="side-card__title">Beyond the Standard Model</div>
+      <div class="side-card__desc">Supersymmetry, string theory, grand unified theories.</div>
+      <div class="side-card__meta"><span>📄 ~6 lessons</span></div>
+    </div>
   </div>
 
 </main>
