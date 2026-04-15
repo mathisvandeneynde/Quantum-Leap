@@ -25,17 +25,17 @@
   --border:         #252a45;
   --border-light:   #2e3455;
 
-  /* ── Hoofdmodule kleuren ── */
-  --mod-ana:  #a855f7;   /* Analytical Mechanics        – paars  */
-  --mod-cft:  #3b82f6;   /* Classical Field Theory      – blauw  */
-  --mod-ced:  #06b6d4;   /* Classical Electrodynamics   – cyaan  */
-  --mod-sr:   #f5a623;   /* Special Relativity          – goud   */
-  --mod-qm:   #00c9a7;   /* Quantum Mechanics           – teal   */
-  --mod-sm:   #22c55e;   /* Statistical Mechanics       – groen  */
-  --mod-qft:  #ef4444;   /* Quantum Field Theory        – rood   */
-  --mod-std:  #e879f9;   /* Standard Model              – roze   */
+  /* Module kleuren */
+  --mod-ana:  #a855f7;
+  --mod-cft:  #3b82f6;
+  --mod-ced:  #06b6d4;
+  --mod-sr:   #f5a623;
+  --mod-qm:   #00c9a7;
+  --mod-sm:   #22c55e;
+  --mod-qft:  #ef4444;
+  --mod-std:  #e879f9;
 
-  /* Legacy aliases (voor bestaande lespagina's) */
+  /* Legacy */
   --mod-em:   #06b6d4;
 
   --sidebar-w: 260px;
@@ -56,6 +56,34 @@ body {
 
 
 /* ============================================================
+   SCROLLBAR — gestyled in platformstijl
+   Geldt voor sidebar en alle scrollbare elementen
+   ============================================================ */
+
+/* Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--border-light) transparent;
+}
+
+/* Chrome / Safari / Edge */
+::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--border-light);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text-muted);
+}
+
+
+/* ============================================================
    SIDEBAR
    ============================================================ */
 .sidebar {
@@ -69,10 +97,13 @@ body {
   top: 0; left: 0; bottom: 0;
   z-index: 100;
   overflow-y: auto;
+  overflow-x: hidden;
 }
+
 .sidebar__logo {
   padding: 24px 20px 20px;
   border-bottom: 1px solid var(--border);
+  flex-shrink: 0;
 }
 .sidebar__logo-wordmark {
   font-size: 18px; font-weight: 700;
@@ -84,12 +115,14 @@ body {
   letter-spacing: 2px; color: var(--text-muted);
   margin-top: 4px; text-transform: uppercase;
 }
+
 .sidebar__section { padding: 20px 12px 4px; }
 .sidebar__section-label {
   font-family: var(--font-mono); font-size: 9px;
   letter-spacing: 2px; color: var(--text-muted);
   text-transform: uppercase; padding: 0 8px; margin-bottom: 6px;
 }
+
 .nav-item {
   display: flex; align-items: center; gap: 10px;
   padding: 9px 12px; border-radius: 8px;
@@ -108,10 +141,12 @@ body {
   display: flex; align-items: center; justify-content: center;
   font-size: 15px; flex-shrink: 0;
 }
+
 .sidebar__user {
   margin-top: auto; padding: 16px 20px;
   border-top: 1px solid var(--border);
   display: flex; align-items: center; gap: 12px;
+  flex-shrink: 0;
 }
 .sidebar__avatar {
   width: 36px; height: 36px; border-radius: 50%;
@@ -178,7 +213,7 @@ body {
 .main-dashboard {
   margin-left: var(--sidebar-w);
   margin-top: var(--header-h);
-  padding: 32px 40px;
+  padding: 32px 40px 64px;
   min-height: calc(100vh - var(--header-h));
 }
 
@@ -244,32 +279,19 @@ body {
 
 
 /* ============================================================
-   HOOFDMODULE GRID
-   Per module: 2 kolommen — links hoofdkaart, rechts zijmodules
+   HOOFDMODULE KAARTEN  (2-kolomsgrid)
    ============================================================ */
 .modules-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 16px;
-  margin-bottom: 12px;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  margin-bottom: 0;
 }
 
-/* Rechterkolom met zijmodules gestapeld */
-.side-modules-inline {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-/* Breed formaat voor module 8 als eindpunt */
 .module-card--wide {
   grid-column: 1 / -1;
 }
 
-
-/* ============================================================
-   HOOFDMODULE KAART  (grote kaart links)
-   ============================================================ */
 .module-card {
   background: var(--bg-card); border: 1px solid var(--border);
   border-radius: 14px; padding: 24px;
@@ -307,48 +329,48 @@ body {
 
 
 /* ============================================================
-   ZIJMODULE KAART  (kleinere kaarten rechts / in grid)
+   ZIJMODULE KAARTEN  (3-kolomsgrid, kleiner)
    ============================================================ */
+.side-modules-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+  margin-bottom: 48px;
+}
+
 .side-card {
   background: var(--bg-card); border: 1px solid var(--border);
-  border-radius: 10px; padding: 14px 16px;
+  border-radius: 10px; padding: 16px 18px;
   position: relative; overflow: hidden;
   transition: background 0.2s, border-color 0.2s;
-  cursor: pointer; flex: 1;
+  cursor: pointer;
 }
 .side-card:hover { background: var(--bg-card-hover); border-color: var(--border-light); }
 .side-card::before {
   content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
-  background: var(--mod-color); opacity: 0.7;
+  background: var(--mod-color); opacity: 0.8;
 }
 .side-card::after {
   content: ''; position: absolute; top: 0; left: 0; bottom: 0; width: 2px;
-  background: var(--mod-color); opacity: 0.3;
+  background: var(--mod-color); opacity: 0.25;
 }
 .side-card__top {
   display: flex; justify-content: space-between; align-items: flex-start;
-  margin-bottom: 8px;
+  margin-bottom: 10px;
 }
-.side-card__icon { font-size: 18px; }
+.side-card__icon { font-size: 20px; }
 .side-card__code {
   font-family: var(--font-mono); font-size: 9px;
-  color: var(--mod-color); margin-bottom: 3px; opacity: 0.9;
+  color: var(--mod-color); margin-bottom: 4px; opacity: 0.9;
 }
-.side-card__title { font-size: 13px; font-weight: 600; margin-bottom: 4px; }
+.side-card__title { font-size: 14px; font-weight: 600; margin-bottom: 6px; }
 .side-card__desc {
-  font-size: 11px; color: var(--text-secondary);
-  line-height: 1.4; margin-bottom: 8px;
+  font-size: 12px; color: var(--text-secondary);
+  line-height: 1.5; margin-bottom: 10px;
 }
 .side-card__meta {
   display: flex; gap: 10px; font-size: 10px;
   color: var(--text-muted); font-family: var(--font-mono);
-}
-
-/* Grid voor zijmodules van module 8 (3 kolommen) */
-.side-modules-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 12px;
 }
 
 
@@ -413,8 +435,8 @@ body {
 .lesson-item {
   display: flex; align-items: center; gap: 12px;
   padding: 14px 20px; border-bottom: 1px solid var(--border);
-  cursor: pointer; transition: background 0.15s; text-decoration: none;
-  color: inherit;
+  cursor: pointer; transition: background 0.15s;
+  text-decoration: none; color: inherit;
 }
 .lesson-item:hover { background: var(--bg-active); }
 .lesson-item.active { background: var(--bg-active); border-left: 2px solid var(--mod-color); }
